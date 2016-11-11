@@ -64,17 +64,39 @@ class data:
         return self._data;
 
     def plot(self, symptom = 'disease'):
-        s = None;
+        size = 0;
+
         if symptom == 'disease':
             for state in self._data:
-                plt.plot(np.arange(0, self._disease[state].size), self._disease[state]);
+                size = self._disease[state].size;
+                plt.plot(np.arange(0, self._disease[state].size),
+                        self._disease[state], label=symptom);
                 break;
         else:
             for state in self._data:
-                s = state
-                plt.plot(np.arange(0, self._data[state][symptom].size), self._data[state][symptom]);
+                size = self._data[state][symptom].size;
+                plt.plot(np.arange(0, self._data[state][symptom].size),
+                        self._data[state][symptom], label=symptom);
 
-        plt.axis([0, self._data[s][symptom].size, 0, 100]);
+        plt.axis([0, size, 0, 100]);
+        plt.show(block=False);
+
+    def scatter(self, symptom = 'disease'):
+        size = 0;
+
+        if symptom == 'disease':
+            for state in self._data:
+                size = self._disease[state].size;
+                plt.scatter(np.arange(0, self._disease[state].size),
+                        self._disease[state], c='k', label=symptom);
+                break;
+        else:
+            for state in self._data:
+                size = self._data[state][symptom].size;
+                plt.scatter(np.arange(0, self._data[state][symptom].size),
+                        self._data[state][symptom], c='k', label=symptom);
+
+        plt.axis([0, size, 0, 100]);
         plt.show(block=False);
 
 ################################################################################

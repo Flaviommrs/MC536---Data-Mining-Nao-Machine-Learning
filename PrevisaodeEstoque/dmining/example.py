@@ -21,6 +21,10 @@ import numpy as np
 from non_parametric import non_parametric
 from data import data
 
+from sklearn.gaussian_process import GaussianProcessRegressor
+from sklearn.gaussian_process.kernels \
+    import RBF, WhiteKernel, RationalQuadratic, ExpSineSquared
+
 from matplotlib import pyplot as plt
 
 from mock import mock
@@ -47,23 +51,20 @@ frequency_MG = db._data['SP']['dor_de_cabeca'];
 
 ################################################################################
 
-#db.plot('dor_de_cabeca');
-db.plot('febre');
-#db.plot();
+db.scatter('disease');
+db.plot('disease');
 
 ################################################################################
 # How to use the DATA MINING algorithm
 # creates the non parametric learner
-nonp = non_parametric();
+nonp = non_parametric(plot=True);
 
-nonp.fit(db);
+y_pred = nonp.predict(np.arange(0,450), db);
 
-#nonp.predict(np.arange(0,20), db);
+print('LogLikelihood', nonp._gpr.log_marginal_likelihood(nonp._gpr.kernel_.theta))
 
-db_pred = nonp.predict_symptoms_for_state(np.arange(0, 300), 'SP');
-
-db_pred.plot('febre');
-
-a = input();
+plt.plot(np.arange(0,y_pred['SP'].size), y_pred['SP']);
+plt.legend();
+plt.show();
 
 ################################################################################
