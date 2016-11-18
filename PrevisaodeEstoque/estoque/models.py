@@ -29,12 +29,6 @@ class Sintoma(models.Model):
 	def __str__(self):
 		return self.nome
 
-class Termo(models.Model):
-	nome = models.CharField(max_length = 20, primary_key=True);
-
-	def __str__(self):
-		return self.nome
-
 class Regiao(models.Model):
 	nome = models.CharField(max_length = 20, primary_key=True);
 
@@ -50,14 +44,10 @@ class Causa(models.Model):
 	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE)
 	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
 
-class Refere(models.Model):
-	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
-	termo = models.ForeignKey(Termo, on_delete=models.CASCADE)
-
 class Busca(models.Model):
 	frequencia = models.IntegerField(default=0);
 	periodo = models.DurationField();
-	termo = models.ForeignKey(Termo, on_delete=models.CASCADE)
+	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
 	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
 
 class Incide(models.Model):
