@@ -5,12 +5,12 @@ from django.db import models
 # Create your models here.
 
 class Medicamento(models.Model):
-	registro = models.IntegerField(default=0,primary_key=True)
+	registro = models.CharField(max_length = 30,primary_key=True)
 	apresentacao = models.CharField(max_length = 300)
 	nome_venda = models.CharField(max_length = 20)
 	classe_terapeutica = models.CharField(max_length = 20)
 	principio_ativo = models.CharField(max_length = 20)
-	laboratorio = models.CharField(max_length = 20)
+	#laboratorio = models.CharField(max_length = 20)
 	hospitalar = models.CharField(max_length = 20)
 
 	def __str__(self):
