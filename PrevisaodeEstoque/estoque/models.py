@@ -30,29 +30,39 @@ class Sintoma(models.Model):
 		return self.nome
 
 class Regiao(models.Model):
-	nome = models.CharField(max_length = 20, primary_key=True);
+	nome = models.CharField(max_length = 20, primary_key=True)
 
 	def __str__(self):
 		return self.nome
 
+class Previsao(models.Model):
+	tipo = models.CharField(max_length=10)
+	resultado = models.CharField(max_length=10)
+
+	def __str__(self):
+		return self.tipo
+
+class Relaciona(models.Model):
+	previsao = models.ForeignKey(Previsao, on_delete=models.CASCADE)
+	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
+
 class Trata(models.Model):
-	dosagem = models.IntegerField(default=0)
 	medicamento  = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
-	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE);
+	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
 
 class Causa(models.Model):
 	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE)
 	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
 
 class Busca(models.Model):
-	frequencia = models.IntegerField(default=0);
-	periodo = models.DurationField();
+	frequencia = models.IntegerField(default=0)
+	periodo = models.DurationField()
 	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
 	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
 
 class Incide(models.Model):
-	incidencia = models.IntegerField(default=0);
-	periodo = models.DurationField();
+	incidencia = models.IntegerField(default=0)
+	periodo = models.DurationField()
 	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE)
 	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
 
