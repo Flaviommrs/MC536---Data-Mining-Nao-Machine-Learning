@@ -42,36 +42,57 @@ class non_parametric(dmining):
         self._kernel = kernel if kernel != None else kernel_gpml;
         
         self._gpr = GPR(kernel=self._kernel, alpha=0, normalize_y=True,
-                n_restarts_optimizer=10 );
+                n_restarts_optimizer=0 );
         self._reg = {}
         self._ssreg = {}
         self._db = None;
 
         self._plot = plot;
 
-    def predict(self, period, data):
+#    def predict(self, period, data):
+#        y_pred = {}
+#        self._db = data
+#
+#        for state in data._states:
+#            db_pred = self.predict_symptoms_for_state(period, state);
+#
+#            Xpred = np.array([db_pred.X()[state][symptom] for symptom in db_pred.X()[state]]);
+#            Xpred = Xpred.reshape(Xpred.shape[0], Xpred.shape[1])
+#
+#            # Gets symptoms for this state
+#            X = np.array([data.X()[state][symptom] for symptom in data.X()[state]]);
+#            # Gets disease frequency
+#            y = data.y()[state];
+#
+#            # uses gaussian regressor for fitting
+#            self._gpr.fit(X.transpose(), y);
+#
+#            pred = self._gpr.predict(Xpred.transpose());
+#
+#            y_pred[state] = pred;
+#
+#        return y_pred;
+
+    def predict(self, period, db):
         y_pred = {}
-        self._db = data
+        self._db = db;
+        db_pred = data();
 
-        for state in data._states:
-            db_pred = self.predict_symptoms_for_state(period, state);
+        for state in db._states:
+            for symptom in self._db.X()[state]:
+                X = self._db._period;
+                y = self._db.X()[state][symptom];
 
-            Xpred = np.array([db_pred.X()[state][symptom] for symptom in db_pred.X()[state]]);
-            Xpred = Xpred.reshape(Xpred.shape[0], Xpred.shape[1])
+                self._gpr.fit(X.reshape(-1,1),y.reshape(-1,1));
 
-            # Gets symptoms for this state
-            X = np.array([data.X()[state][symptom] for symptom in data.X()[state]]);
-            # Gets disease frequency
-            y = data.y()[state];
+                pred = self._gpr.predict(period.reshape(-1,1));
 
-            # uses gaussian regressor for fitting
-            self._gpr.fit(X.transpose(), y);
+                db_pred.push_sympthom(symptom, state, pred);
 
-            pred = self._gpr.predict(Xpred.transpose());
+                if self._plot:
+                    db_pred.plot(symptom);
 
-            y_pred[state] = pred;
-
-        return y_pred;
+        return db_pred;
 
     def predict_symptoms_for_state(self, period, state):
         db_pred = data();
