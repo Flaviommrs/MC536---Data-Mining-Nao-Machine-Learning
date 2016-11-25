@@ -36,29 +36,27 @@ class Regiao(models.Model):
 		return self.nome
 
 class Previsao(models.Model):
-	tipo = models.CharField(max_length=10)
-	resultado = models.CharField(max_length=10)
+	tipo = models.CharField(max_length=20)
+	resultado = models.TextField()
+	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE, default=None)
+	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
 
 	def __str__(self):
-		return self.tipo
-
-class Relaciona(models.Model):
-	previsao = models.ForeignKey(Previsao, on_delete=models.CASCADE)
-	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
+		return "resultado do tipo: " + self.tipo + " para o sintoma: " + self.sintoma.nome + " na regiao: " + self.regiao.nome
 
 class Trata(models.Model):
 	medicamento  = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
 	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
 
+	def __str__(self):
+		return self.medicamento.nome_venda + " trata " + self.sintoma.nome
+
 class Causa(models.Model):
 	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE)
 	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE)
 
-class Busca(models.Model):
-	frequencia = models.IntegerField(default=0)
-	periodo = models.DurationField()
-	sintoma = models.ForeignKey(Sintoma, on_delete=models.CASCADE, default=None)
-	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
+	def __str__(self):
+		return self.doenca.nome_popular + " causa " + self.sintoma.nome
 
 class Incide(models.Model):
 	incidencia = models.IntegerField(default=0)
