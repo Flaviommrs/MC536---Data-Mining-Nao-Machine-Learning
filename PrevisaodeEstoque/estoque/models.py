@@ -11,20 +11,20 @@ class Medicamento(models.Model):
 	classe_terapeutica = models.CharField(max_length = 20)
 	principio_ativo = models.CharField(max_length = 20)
 	#laboratorio = models.CharField(max_length = 20)
-	hospitalar = models.CharField(max_length = 20)
+	#hospitalar = models.CharField(max_length = 20)
 
 	def __str__(self):
 		return self.nome_venda
 
 class Doenca(models.Model):
-	nome_cientifico = models.CharField(max_length = 20, primary_key=True)
-	nome_popular = models.CharField(max_length = 20)
+	#nome_cientifico = models.CharField(max_length = 20, primary_key=True)
+	nome_popular = models.CharField(max_length = 20, primary_key=True)
 
 	def __str__(self):
-		return self.nome_cientifico
+		return self.nome_popular
 
 class Sintoma(models.Model):
-	nome = models.CharField(max_length= 20, primary_key=True)
+	nome = models.CharField(max_length= 50, primary_key=True)
 
 	def __str__(self):
 		return self.nome
