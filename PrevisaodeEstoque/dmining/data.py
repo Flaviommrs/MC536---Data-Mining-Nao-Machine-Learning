@@ -18,6 +18,8 @@ Class defining how data is stored and passed to the machine learning algorithms
 
 import numpy as np
 
+import pickle
+
 from matplotlib import pyplot as plt
 
 ################################################################################
@@ -54,6 +56,13 @@ class data:
 
     def X(self):
         return self._data;
+
+    def save(self, path):
+        pickle.dump(self, open(path, 'wb'));
+
+    def load(self, path):
+        self = pickle.load(open(path, 'rb'));
+        return self;
 
     def plot(self, symptom):
         size = 0;
