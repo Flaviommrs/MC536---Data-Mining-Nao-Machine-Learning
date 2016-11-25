@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+
+	{% load static %}	
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="./files/icon.jpg">
+	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
 
 	<title>PEM - equipe</title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="./files/bootstrap.min.css" rel="stylesheet">
+	<link href="{% static "estoque/bootstrap.min.css" %}"rel="stylesheet">
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<link href="./files/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link href="./files/dashboard.css" rel="stylesheet">
+	<link href="{% static "estoque/dashboard.css" %}" rel="stylesheet">
 
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,12 +43,12 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="filtro.html">Previsão de Estoque de Medicamentos</a>
+			<a class="navbar-brand" href="{% url 'estoque:filtro' %}">Previsão de Estoque de Medicamentos</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="equipe.html">Equipe</a></li>
-			<li><a href="help.html">Help</a></li>
+			<li><a href="{% url 'estoque:equipe' %}">Equipe</a></li>
+			<li><a href="{% url 'estoque:help' %}">Help</a></li>
 			</ul>
 		</div>
 		</div>
@@ -63,22 +64,22 @@
 		<div class="jumbotron">
 			<div class="row placeholders">
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/Ta.jpg" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/Ta.jpg" %}" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Tamara Martinelli de Campos</h4>
 				  <span class="text-muted">Front-end</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/ze.jpg" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/ze.jpg" %}" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>José H.F Pinto</h4>
 				  <span class="text-muted">Front-end</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/Victor.jpg" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/Victor.jpg" %}" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Victor Matsuguma</h4>
 				  <span class="text-muted">Data Mining</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/thiago.jpg" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/thiago.jpg" %}" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Tiago Gimenes</h4>
 				  <span class="text-muted">Data Mining</span>
 				</div>
@@ -87,22 +88,22 @@
 			
 			<div class="row placeholders">
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/flavio.jpg" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/flavio.jpg" %}" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Flavio Matheus Muniz Ribeiro da Silva</h4>
 				  <span class="text-muted">Integração</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/thales.jpg" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/thales.jpg" %}" width="170" height="170" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Thales Mateus Rodrigues Oliveira</h4>
 				  <span class="text-muted">Integração</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/victorl.jpg" width="140" height="130" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/victorl.jpg" %}"  width="140" height="130" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Victor Leal</h4>
 				  <span class="text-muted">Machine Learning</span>
 				</div>
 				<div class="col-xs-6 col-sm-3 placeholder">
-				  <img src="./files/humberto.jpg" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
+				  <img src="{% static "estoque/humberto.jpg" %}" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
 				  <h4>Humberto Politi de Oliveira</h4>
 				  <span class="text-muted">Machine Learning</span>
 				</div>

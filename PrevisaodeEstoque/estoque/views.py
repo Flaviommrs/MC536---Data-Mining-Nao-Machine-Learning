@@ -14,6 +14,15 @@ from models import Medicamento, Doenca, Causa, Trata
 def filtro(request):
 	return render(request, 'estoque/filtro.html')
 
+def equipe(request):
+	return render(request, 'estoque/equipe.html')
+
+def help(request):
+	return render(request, 'estoque/help.html')
+
+def mapa(request):
+	return render(request, 'estoque/mapa.html')
+
 
 def medicamentos(request, nomeDoenca):
 	doenca = Doenca.objects.get(nome_popular=nomeDoenca)

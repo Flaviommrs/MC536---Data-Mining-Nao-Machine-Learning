@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+
+	{% load static %}		
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="./files/icon.jpg">
+	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
 
 	<title>PEM - help</title>
 
 	<!-- Bootstrap core CSS -->
-	<link href="./files/bootstrap.min.css" rel="stylesheet">
+	<link href="{% static "estoque/bootstrap.min.css" %}"rel="stylesheet">
 
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<link href="./files/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
-	<link href="./files/dashboard.css" rel="stylesheet">
+	<link href="{% static "estoque/dashboard.css" %}" rel="stylesheet">
 
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -42,12 +43,12 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="filtro.html">Previsão de Estoque de Medicamentos</a>
+			<a class="navbar-brand" href="{% url 'estoque:filtro' %}">Previsão de Estoque de Medicamentos</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="equipe.html">Equipe</a></li>
-			<li><a href="help.html">Help</a></li>
+			<li><a href="{% url 'estoque:equipe' %}">Equipe</a></li>
+			<li><a href="{% url 'estoque:help' %}">Help</a></li>
 			</ul>
 		</div>
 		</div>
@@ -57,7 +58,7 @@
 			<div class="jumbotron">
 			  <h1>Help</h1>
 			  <p>A previsão de medicamentos disponível nesta página funciona através de uma busca por uma doença e por uma região do Brasil.
-			  As doenças e regiões cadastradas estão disponiveis para consulta na <a href="filtro.html">página</a> principal.</p>
+			  As doenças e regiões cadastradas estão disponiveis para consulta na <a href="{% url 'estoque:filtro' %}">página</a> principal.</p>
 			  <p>De acordo com os dados fornecidos na busca, uma lista é gerada com a quantidade de medicamentos disponíveis para tratar uma
 			  determinada doença, o nome do medicamento, o seu composto ativo, como o medicamento é apresentado e a 
 			  classe terapêutica desse medicamento.</p>
