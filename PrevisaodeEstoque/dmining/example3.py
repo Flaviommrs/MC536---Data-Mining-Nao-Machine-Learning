@@ -33,13 +33,6 @@ from mock import mock
 # Create data
 db = data();
 
-#db.push_sympthom('dor_de_cabeca', 'SP', mock['dor_de_cabeca']);
-#
-#db.push_sympthom('febre', 'SP', mock['febre']);
-#
-## Push the period
-#db.push_period(np.arange(0, mock['dengue'].size));
-
 # Load data from file
 db = db.load('db.txt');
 
@@ -50,16 +43,11 @@ nonp = non_parametric(plot=False, kernel=None);
 
 # Print data
 db.plot('febre')
-#db.plot('dengue')
 
-#db_pred = nonp.predict_for('SP', 'febre', np.arange(0,2*db._shape[0]), db);
 db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 
 # Print Prediction
 db_pred.plot('febre')
-#db_pred.plot('dengue')
-
-#print('LogLikelihood', nonp._gpr.log_marginal_likelihood(nonp._gpr.kernel_.theta))
 
 plt.show();
 

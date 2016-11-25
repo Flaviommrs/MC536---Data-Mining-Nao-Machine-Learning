@@ -49,8 +49,6 @@ db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 db_pred.plot('dengue')
 db_pred.plot('febre')
 
-print('LogLikelihood', nonp._gpr.log_marginal_likelihood(nonp._gpr.kernel_.theta))
-
 plt.show();
 
 ################################################################################
