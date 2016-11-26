@@ -21,54 +21,7 @@ class trends:
 
     file_path = "db.txt"
     base_csv_file = "csv"
-
-    def get_trends(self, terms_array):
-
-        self.splitTerms = terms_array
-        self.terms = ",".join(terms_array);
-
-        self.pytrend = TrendReq(self.google_username, self.google_password, custom_useragent = "My Pytrends Class")
-
-        self.db = data()
-        self.db.push_period(np.arange(0, self.PERIOD_SIZE))
-        for region in self.regions:
-
-            self.dataframeList = [None] * len(self.dates)
-            self.geo_tag = 'BR-' + region
-            
-            # Requests trends for all set periods and stores in a sorted list
-            for date in self.dates:
-                self.trend_payload = {'q':self.terms, 'geo':self.geo_tag, 'date':date}
-
-                try:
-                    self.df = self.pytrend.trend(self.trend_payload, return_type = 'dataframe')
-                    self.dataframeList.insert(self.dates.index(date), self.df)
-                    print(date)
-                except Exception as exp:
-                    print(exp.args)
-                    print("Não rolou")
-
-                time.sleep(70)
-                        
-            # Concats all dataframes in list into a single dataframe
-            self.dataframe = self.dataframeList[0]
-            for i, df in enumerate(self.dataframeList):
-                if i > 0:
-                    self.dataframe = self.dataframe.append(df)
-                        
-            print(region)
-            print(self.dataframe)
-                    
-            # Pushes data for each term for this region
-            for term in self.splitTerms:
-                self.db.push_sympthom(term, region, self.dataframe[term].values)
-                
-           # time.sleep(180)
-
-        self.db.save(self.file_path)
-        
-        return self.db
-
+    
     def get_trends_safe(self, terms_array):
 
         # Parses array into a list of 4-term lists
@@ -78,8 +31,8 @@ class trends:
             self.startIndex = termIndex * self.TERMS_PER_REQUEST
             self.endIndex = np.min([(self.startIndex+self.TERMS_PER_REQUEST),len(terms_array)])
             self.termsList[termIndex] = terms_array[self.startIndex:self.endIndex]
-            [s.lower for s in self.termsList[termIndex]]
-           
+            self.termsList[termIndex] = [s.lower for s in self.termsList[termIndex]]
+
         self.pytrend = TrendReq(self.google_username, self.google_password, custom_useragent = "My Pytrends Class")
 
         self.db = data()
@@ -88,12 +41,14 @@ class trends:
         self.count = 1
         
         for region in self.regions:
-
+            print(region)
+            
             # The region for the request
             self.geo_tag = 'BR-' + region
 
             for termsListIndex, terms in enumerate(self.termsList):
-
+                print("Terms " + str(termsListIndex) + "of " + str(len(self.termsList)))
+                
                 # The initial empty dataframe list
                 self.dataframeList = [None] * len(self.dates)
 
@@ -129,7 +84,7 @@ class trends:
                 print(region)
                 print(self.dataframe)
 
-                self.csvFile = self.base_csv_file + str(termsListIndex) + ".csv"
+                self.csvFile = self.base_csv_file + region + str(termsListIndex) + ".csv"
                 self.dataframe.to_csv(self.csvFile, sep = ',', encoding = "utf-8")
                 
                 # Pushes data for each term for this region
