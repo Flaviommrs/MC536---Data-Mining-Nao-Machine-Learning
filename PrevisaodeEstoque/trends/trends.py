@@ -31,8 +31,8 @@ class trends:
             self.startIndex = termIndex * self.TERMS_PER_REQUEST
             self.endIndex = np.min([(self.startIndex+self.TERMS_PER_REQUEST),len(terms_array)])
             self.termsList[termIndex] = terms_array[self.startIndex:self.endIndex]
-            self.termsList[termIndex] = [s.lower for s in self.termsList[termIndex]]
-
+            self.termsList[termIndex] = [s.lower() for s in self.termsList[termIndex]]
+                    
         self.pytrend = TrendReq(self.google_username, self.google_password, custom_useragent = "My Pytrends Class")
 
         self.db = data()
@@ -40,14 +40,14 @@ class trends:
 
         self.count = 1
         
-        for region in self.regions:
-            print(region)
+        for regionIndex, region in enumerate(self.regions):
+            print(region + ". " + str(regionIndex) + " of " + str(len(self.regions)))
             
             # The region for the request
             self.geo_tag = 'BR-' + region
 
             for termsListIndex, terms in enumerate(self.termsList):
-                print("Terms " + str(termsListIndex) + "of " + str(len(self.termsList)))
+                print("Terms " + str(termsListIndex) + " of " + str(len(self.termsList)))
                 
                 # The initial empty dataframe list
                 self.dataframeList = [None] * len(self.dates)
@@ -81,7 +81,6 @@ class trends:
                     if i > 0:
                         self.dataframe = self.dataframe.append(df)
                     
-                print(region)
                 print(self.dataframe)
 
                 self.csvFile = self.base_csv_file + region + str(termsListIndex) + ".csv"
