@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="./files/icon.jpg">
+
+	<title>PEM - Mapa</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="./files/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom styles-->
+	<link href="./files/dashboard.css" rel="stylesheet">
+
+  <style>
+  path {
+    fill: none;
+    stroke: #000;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  </style>
+
+	</head>
+	<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="container-fluid">
+	    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="filtro.html">Previsão de Estoque de Medicamentos</a>
+	    </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav navbar-right">
+		    <li><a href="equipe.html">Equipe</a></li>
+		    <li><a href="help.html">Help</a></li>
+		    </ul>
+	    </div>
+	    </div>
+	  </nav>
+
+	  <div class="container">
+		  <h1 class="page-header">Estoque Previsto</h1>
+      <svg></svg>
+    </div>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script>
+      var width = 960,
+          height = 600;
+      var projection=d3.geo.mercator()
+	      .scale(800)
+	      .center([-54, -15])
+	      .translate([width / 2, height / 2])
+	
+      var path = d3.geo.path()
+          .projection(projection);
+      var svg = d3.select("svg")
+          .attr("width", width)
+          .attr("height", height);
+      var g = svg.append("g");
+      d3.json("files/br.json", function(error, br) {
+        if (error) return console.error(error);
+        g.append("path")
+            .datum(topojson.mesh(br))
+            .attr("d", path);
+      });
+    </script>
+</body></html>

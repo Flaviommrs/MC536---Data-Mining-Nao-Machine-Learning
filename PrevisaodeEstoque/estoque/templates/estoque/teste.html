@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+	<title>Dashboard Template for Bootstrap</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="./files/bootstrap.min.css" rel="stylesheet">
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="./files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="./files/dashboard.css" rel="stylesheet">
+
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="./files/ie-emulation-modes-warning.js.download"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	</head>
+
+	<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="filtro.html">Previsão de Medicamentos</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+			<li><a href="equipe.html">Equipe</a></li>
+			<li><a href="help.html">Help</a></li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+	<div class="container">
+			<h1 class="page-header">Pesquisa</h1>
+			<div class="well well-sm col-lg-10">
+			<form class="form-horizontal">
+				<fieldset>
+				<div class="form-group">
+					<label for="selectDoenca" class="col-lg-2 control-label">Doença</label>
+					<div class="col-lg-5">
+					<select class="form-control" id="selectDoenca">
+						<option>Gripe Barataria</option>
+						<option>Gripe Matadora</option>
+						<option>Gripe Suina</option>
+						<option>Diabetes A</option>
+						<option>Pneumonia</option>
+					</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="selectRegiao" class="col-lg-2 control-label">Região</label>
+						<div class="col-lg-5">
+						<select class="form-control" id="selectRegiao">
+							<option>Centro-Oeste</option>
+							<option>Nordeste</option>
+							<option>Norte</option>
+							<option>Sudeste</option>
+							<option>Sul</option>
+						</select>
+					</div>
+				</div>
+				<label>Intervalo de Previsão</label>
+				<div class="form-group">
+					<label for="inputBYear" class="col-lg-2 control-label">Início</label>
+					<div class="col-lg-2">
+						<input type="text" class="form-control" id="inputBYear">
+						<span class="help-block">Ex: 2016</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEYear" class="col-lg-2 control-label">Término</label>
+					<div class="col-lg-2">
+						<input type="text" class="form-control" id="inputEYear">
+						<span class="help-block">Ex: 2021</span>
+					</div>
+				</div>		
+				
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+					<button type="submit" class="btn btn-primary">Pesquisar</button>
+					<button type="reset" class="btn btn-default">Cancelar</button>
+					</div>
+				</div>
+				</fieldset>
+			</form>
+			</div>
+			
+			<h2 class="sub-header">Medicamentos Relacionados</h2>
+			<span class="help-block">Selecione o medicamento que você deseja ver a previsão.</span>
+			<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>Quantidade</th>
+					<th>Nome</th>
+					<th>Apresentação</th>
+					<th>Componente Ativo</th>
+					<th>Clase Terapeutica</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>1002</td>
+					<td>Acetilcisteína</td>
+					<td>200 Mg Granulado 16 ENV x 5g</td>
+					<td>Acetilcisteína</td>
+					<td>Expectorante</td>
+				</tr>
+				<tr>
+					<td>793</td>
+					<td>Aciclovir</td>
+					<td>200 Mg comprimido x25</td>
+					<td>Aciclovir</td>
+					<td>Antivirais para herpes</td>
+				</tr>
+				<tr>
+					<td>1382</td>
+					<td>Albel</td>
+					<td>400 Mg comprimido mastigavel x1</td>
+					<td>Albendazol</td>
+					<td>Anti-Helmíntico</td>
+				</tr>
+				<tr>
+					<td>1590</td>
+					<td>Alprazolan</td>
+					<td>025mg comprimido</td>
+					<td>Alprazolan</td>
+					<td>Tranquilizante</td>
+				</tr>
+				<tr>
+					<td>986</td>
+					<td>Amoxilina</td>
+					<td>500 Mg Capsula Gel Dura x 21</td>
+					<td>Amoxilina</td>
+					<td>Penicilinas Orais</td>
+				</tr>
+				<tr>
+					<td>845</td>
+					<td>Lacto Purga</td>
+					<td>5 Mg Comprimido Revestido x16</td>
+					<td>Bisacodil</td>
+					<td>Laxante por contato</td>
+				</tr>
+				<tr>
+					<td>1308</td>
+					<td>Eno Tab frutas sortidas</td>
+					<td>750mg comprimidos mastigáveis x8</td>
+					<td>Frutas Sortidas</td>
+					<td>Antiacidos puros</td>
+				</tr>
+				
+				</tbody>
+			</table>
+			</div>
+		
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="./files/jquery.min.js.download"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="./files/bootstrap.min.js.download"></script>
+	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	<script src="./files/holder.min.js.download"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="./files/ie10-viewport-bug-workaround.js.download"></script>
+	
+
+</body></html>

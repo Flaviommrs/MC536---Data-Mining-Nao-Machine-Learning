@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+  {% load static %}  
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
+
+	<title>PEM - Mapa</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static "estoque/bootstrap.min.css" %}"rel="stylesheet">
+	<!-- Custom styles-->
+	<link href="{% static "estoque/dashboard.css" %}" rel="stylesheet">
+
+	</head>
+	<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="container-fluid">
+	    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		    <span class="sr-only">Toggle navigation</span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="{% url 'estoque:filtro' %}">Previsão de Estoque de Medicamentos</a>
+	    </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav navbar-right">
+		    <li><a href="{% url 'estoque:equipe' %}">Equipe</a></li>
+        <li><a href="{% url 'estoque:help' %}">Help</a></li>
+		    </ul>
+	    </div>
+	    </div>
+	  </nav>
+
+	  <div class="container">
+		  <h1 class="page-header">Estoque Previsto</h1>
+      <svg></svg>
+    </div>
+  <style>
+
+  .SP {
+    fill: blue;
+    fill-opacity: 1;
+  }
+
+  .state_contour {
+    fill: none;
+    stroke: black;
+    stroke-linejoin: round;
+  }
+
+  </style>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3-queue.v2.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script>
+
+  // Define map size on screen
+  var width = 960,
+      height = 600;
+
+  var svg = d3.select("body").append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+  var g = svg.append("g");
+
+  var zoom = d3.behavior.zoom()
+    .translate([0, 0])
+    .scale(1)
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed);
+
+  svg.call(zoom) // delete this line to disable free zooming
+    .call(zoom.event);
+
+  // Align center of Brazil to center of map
+  var projection = d3.geo.mercator()
+    .scale(650)
+    .center([-52, -15])
+    .translate([width / 2, height / 2]);
+
+  var path = d3.geo.path()
+    .projection(projection);
+
+  // Load data (asynchronously)
+  d3_queue.queue()
+      .defer(d3.json, "{% static "estoque/br.json" %}")
+      .await(ready);
+
+  var color = d3.scaleThreshold()
+    .domain(d3.range(2, 10))
+    .range(d3.schemeBlues[9]);
+
+  function ready(error, shp) {
+    if (error) throw error;
+
+    // Extracting polygons and contours
+    var states = topojson.feature(shp, shp.objects.estados);
+    var states_contour = topojson.mesh(shp, shp.objects.estados);
+
+    // Desenhando estados
+    g.selectAll(".estado")
+        .data(states.features)
+      .enter()
+        .append("path")
+        .attr("class", function(d) { return d.id; })
+        .attr("fill", function(d) { return color(d.rate = unemployment.get(d.id)); })
+        .attr("d", path);
+
+    g.append("path")
+      .datum(states_contour)
+      .attr("d", path)
+      .attr("class", "state_contour");
+  }
+
+  // What to do when zooming
+  function zoomed() {
+    g.style("stroke-width", 1.5 / d3.event.scale + "px");
+    g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  }
+  d3.select(self.frameElement).style("height", height + "px");
+
+  </script>
+</body></html>
