@@ -3,6 +3,7 @@ from pytrends.request import TrendReq
 import numpy as np
 import pandas as pd
 import time
+import datetime
 
 class trends:
         
@@ -32,7 +33,7 @@ class trends:
             self.endIndex = np.min([(self.startIndex+self.TERMS_PER_REQUEST),len(terms_array)])
             self.termsList[termIndex] = terms_array[self.startIndex:self.endIndex]
             self.termsList[termIndex] = [s.lower() for s in self.termsList[termIndex]]
-                    
+
         self.pytrend = TrendReq(self.google_username, self.google_password, custom_useragent = "My Pytrends Class")
 
         self.db = data()
@@ -63,16 +64,14 @@ class trends:
                         try:
                             self.df = self.pytrend.trend(self.trend_payload, return_type = 'dataframe')
                             self.dataframeList.insert(self.dates.index(date), self.df)
-                            self.wait = 60
                             print(date)
-                            time.sleep(30)
+                            time.sleep(45)
                             break;
                         except Exception as exp:
                             print("Não rolou")
-                            
                             self.count = self.count + 1
                             self.wait = np.exp2([self.count])
-                            print(self.wait)
+                            print("Espera " + str(datetime.datetime.now()) + ", " + str(self.wait))
                             time.sleep(self.wait)
 
                 # Concats all dataframes in list into a single dataframe
@@ -83,14 +82,14 @@ class trends:
                     
                 print(self.dataframe)
 
-                self.csvFile = self.base_csv_file + region + str(termsListIndex) + ".csv"
+                self.csvFile = self.base_csv_file + region + str(termsListIndex) + str(datetime.datetime.now()) + ".csv"
                 self.dataframe.to_csv(self.csvFile, sep = ',', encoding = "utf-8")
                 
                 # Pushes data for each term for this region
                 for term in terms:
                     self.db.push_sympthom(term, region, self.dataframe[term].values)
                 
-        self.db.save(self.file_path)
+        self.db.save("data" + str(datetime.datetime.now()) + ".txt")
         
         return self.db
 
