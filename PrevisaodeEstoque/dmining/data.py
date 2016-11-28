@@ -21,6 +21,7 @@ import numpy as np
 import pickle
 import csv
 
+from pandas import date_range
 from matplotlib import pyplot as plt
 
 ################################################################################
@@ -102,6 +103,9 @@ class data:
                 data = [state];
                 [data.append(d[0]) for d in self._data[state][s]]
                 spanwriter.writerow(data);
+            date = date_range(start='1/4/2004', periods=len(data)-1, freq='7D')
+            date = date.insert(0, 'Date');
+            spanwriter.writerow(date)
 
     def plot(self, symptom):
         size = 0;

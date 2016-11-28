@@ -29,6 +29,8 @@ from matplotlib import pyplot as plt
 
 from mock import mock
 
+from pandas import date_range
+
 ################################################################################
 # Create data
 db = data();
@@ -41,27 +43,21 @@ db = db.load_csv('MG', '../trends/csvMG32016-11-27 13:59:15.353338.csv');
 db = db.load_csv('MG', '../trends/csvMG42016-11-27 15:11:19.853100.csv');
 db = db.load_csv('MG', '../trends/csvMG52016-11-27 15:15:07.762093.csv');
 
-
 ################################################################################
 # How to use the DATA MINING algorithm
 # creates the non parametric learnen
 nonp = non_parametric(plot=False);
 
 # Print data
-db.plot('tosse');
+db.plot('febre');
 
 db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 
-print(db_pred._data['MG']['vomito'].shape);
-print(db._data['MG']['vomito'].shape);
-
 # Print Prediction
-db_pred.plot('tosse');
+db_pred.plot('febre');
 
 db_pred.save_csv();
 
 plt.show();
-
-################################################################################
 
 ################################################################################
