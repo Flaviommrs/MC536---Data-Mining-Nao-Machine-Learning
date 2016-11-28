@@ -1,7 +1,7 @@
 ################################################################################
 ##
-# @file example.py
-# @date 2016-10-14
+# @file example3.py
+# @date 2016-11-24
 # @author Tiago Lobato Gimenes    (tlgimenes@gmail.com)
 #
 # @copyright Tiago Lobato Gimenes 2016. All rights reserved.
@@ -33,31 +33,22 @@ from mock import mock
 # Create data
 db = data();
 
-################################################################################
-## Push frequencies for each state for each sympthom
-db.push_sympthom('dor_de_cabeca', 'SP', mock['dor_de_cabeca']);
-
-db.push_sympthom('febre', 'SP', mock['febre']);
-
-# Push the period
-db.push_period(np.arange(0, mock['dengue'].size));
-
-################################################################################
-# How to retrieve the frequency
-frequency_MG = db._data['SP']['dor_de_cabeca'];
+# Load data from file
+db = db.load('db.txt');
 
 ################################################################################
 # How to use the DATA MINING algorithm
-# creates the non parametric learner
-nonp = non_parametric(plot=False);
+# creates the non parametric learnen
+nonp = non_parametric(plot=False, kernel=None);
 
-db.plot('dor_de_cabeca')
+# Print data
 db.plot('febre')
 
-db_pred = nonp.predict(np.arange(0,450), db);
+db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 
-db_pred.plot('dor_de_cabeca')
+# Print Prediction
 db_pred.plot('febre')
+
 plt.show();
 
 ################################################################################

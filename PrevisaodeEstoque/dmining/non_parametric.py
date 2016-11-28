@@ -18,6 +18,7 @@ Contains a non parametric predictor and learner
 
 from sklearn.gaussian_process import GaussianProcessRegressor as GPR
 from sklearn.gaussian_process.kernels import RBF, WhiteKernel, RationalQuadratic, ExpSineSquared
+from sklearn.kernel_ridge import KernelRidge
 
 from regressor import dmining
 
@@ -29,49 +30,62 @@ from data import data
 
 class non_parametric(dmining):
     def __init__(self, kernel = None, plot = False):
-        k1 = 66.0**2 * RBF(length_scale=577.0)  # long term smooth rising trend
-        k2 = 2.4**2 * RBF(length_scale=90.0) \
-                * ExpSineSquared(length_scale=0.7, periodicity=50.0)  # seasonal component
-        # medium term irregularity
-        k3 = 0.66**2 \
-                * RationalQuadratic(length_scale=1.2, alpha=0.78)
-        k4 = 0.18**2 * RBF(length_scale=0.134) \
-                + WhiteKernel(noise_level=0.19**2)  # noise terms
-        kernel_gpml = k1 + k2 + k3 + k4
+        kernels = []
+        kernels.append(RBF(length_scale=400.0))                                                        # long term smooth rising trend
+        kernels.append(2*RBF(length_scale=300.0) * ExpSineSquared(length_scale=0.1, periodicity=80.0)) # seasonal component
+        kernels.append(ExpSineSquared(length_scale=0.5, periodicity=30.0))                             # seasonal component
+        kernels.append(RationalQuadratic(length_scale=0.01, alpha=20)) 
+        kernels.append(WhiteKernel(noise_level=100)) 
+        
+        kernel = kernels[0]
+        for k in kernels[1:]:
+            kernel = k + kernel
+
+        kernel_gpml = kernel
         
         self._kernel = kernel if kernel != None else kernel_gpml;
         
-        self._gpr = GPR(kernel=self._kernel, alpha=0, normalize_y=True,
-                n_restarts_optimizer=10 );
+        self._gpr = KernelRidge(kernel = self._kernel);
         self._reg = {}
         self._ssreg = {}
         self._db = None;
 
         self._plot = plot;
 
-    def predict(self, period, data):
-        y_pred = {}
-        self._db = data
+    def predict_for(self, state, symptom, period, db):
+        self._db = db;
+        db_pred = data();
 
-        for state in data._states:
-            db_pred = self.predict_symptoms_for_state(period, state);
+        X = self._db._period;
+        y = self._db.X()[state][symptom];
+        
+        self._gpr.fit(X.reshape(-1,1),y.reshape(-1,1));
+        
+        pred = self._gpr.predict(period.reshape(-1,1));
+        
+        db_pred.push_sympthom(symptom, state, pred);
+        
+        return db_pred;
 
-            Xpred = np.array([db_pred.X()[state][symptom] for symptom in db_pred.X()[state]]);
-            Xpred = Xpred.reshape(Xpred.shape[0], Xpred.shape[1])
+    def predict(self, period, db):
+        self._db = db;
+        db_pred = data();
 
-            # Gets symptoms for this state
-            X = np.array([data.X()[state][symptom] for symptom in data.X()[state]]);
-            # Gets disease frequency
-            y = data.y()[state];
+        for state in db._states:
+            for symptom in self._db.X()[state]:
+                X = self._db._period;
+                y = self._db.X()[state][symptom];
 
-            # uses gaussian regressor for fitting
-            self._gpr.fit(X.transpose(), y);
+                self._gpr.fit(X.reshape(-1,1),y.reshape(-1,1));
 
-            pred = self._gpr.predict(Xpred.transpose());
+                pred = self._gpr.predict(period.reshape(-1,1));
 
-            y_pred[state] = pred;
+                db_pred.push_sympthom(symptom, state, pred);
 
-        return y_pred;
+                if self._plot:
+                    db_pred.plot(symptom);
+
+        return db_pred;
 
     def predict_symptoms_for_state(self, period, state):
         db_pred = data();
