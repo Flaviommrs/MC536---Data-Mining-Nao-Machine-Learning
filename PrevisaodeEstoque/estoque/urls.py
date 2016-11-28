@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^equipe/$', views.equipe, name='equipe'),
     url(r'^help/$', views.help, name='help'),
     url(r'^mapa/$', views.mapa, name='mapa'),
-    url(r'^(?P<nomeDoenca>[A-Z][a-z]+)/$', views.medicamentos, name='medicamentos'),
+    url(r'^medicamentos/(?P<nomeDoenca>([A-Z])\w*)/$', views.medicamentos, name='medicamentos'),
+    url(r'^previsao/(?P<sintoma>([A-Z])\w*)/$', views.previsao, name='previsao'),
 ]

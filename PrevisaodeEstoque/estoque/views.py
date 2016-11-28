@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 
-from models import Medicamento, Doenca, Causa, Trata
+from models import Medicamento, Doenca, Causa, Trata, Previsao
 
 # Create your views here.
 
@@ -33,13 +33,13 @@ def medicamentos(request, nomeDoenca):
 	for causa in causas:
 		med = Trata.objects.filter(sintoma=causa.sintoma)
 		for m in med:
-			aux = { 
-				'Registro':m.medicamento.registro, 
-				'Apresentacao':m.medicamento.apresentacao, 
-				'PrincipioAtivo':m.medicamento.principio_ativo, 
-				'Nome':m.medicamento.nome_venda, 
-				'ClasseTerapeutica':m.medicamento.classe_terapeutica
-				}
+			aux = [
+				m.medicamento.registro, 
+				m.medicamento.apresentacao, 
+				m.medicamento.principio_ativo, 
+				m.medicamento.nome_venda, 
+				m.medicamento.classe_terapeutica
+				]
 			medicamentos.append(aux)
 
 	json_data = json.dumps(medicamentos)
@@ -48,12 +48,28 @@ def medicamentos(request, nomeDoenca):
 
 	return render(request, 'estoque/medicamentos.html', context)
 
-# def previsao(request, idRemedio):
-# 	medicamento = Medicamentos.objects.get(registro=idRemedio)
-# 	trata = Trata.objects.get(medicamento=medicamento)
-# 	relaciona = Relaciona.objects(sintoma=trata.sintoma)
+def previsao(request, sintoma):
+
+	data = []
+	previsoes = Previsao.objects.filter(sintoma=sintoma)
+
+	for previsao in previsoes:
+		array = previsao.resultado.split(',')
+		resultado = []
+		for ponto in array:
+			resultado.append(float(ponto))
+		aux = [
+			previsao.tipo,
+			previsao.regiao.nome,
+			resultado
+		]
+		data.append(aux)
+
+	json_data = json.dumps(data)
+
+	context = {'previsao': json_data}
 
 
-# 	return HttpResponse("Should Return prevision")
+	return render(request, 'estoque/previsao.html', context)
 
 
