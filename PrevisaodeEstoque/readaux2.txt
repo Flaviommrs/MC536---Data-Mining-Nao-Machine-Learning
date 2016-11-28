@@ -1,0 +1,5 @@
+redesneurais/cansaco.csv
+redesneurais/dor_atras_dos_olhos.csv
+redesneurais/dor_de_cabeca.csv
+redesneurais/dor_muscular.csv
+redesneurais/dor_nas_articulacoes.csv
