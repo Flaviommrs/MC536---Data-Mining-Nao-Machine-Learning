@@ -48,10 +48,13 @@ def medicamentos(request, nomeDoenca):
 
 	return render(request, 'estoque/medicamentos.html', context)
 
-def previsao(request, sintoma):
+def previsao(request, registro):
+
+	medicamento = Medicamento.objects.get(registro=registro)
+	trata = Trata.objects.get(medicamento=medicamento)
 
 	data = []
-	previsoes = Previsao.objects.filter(sintoma=sintoma)
+	previsoes = Previsao.objects.filter(sintoma=trata.sintoma)
 
 	for previsao in previsoes:
 		array = previsao.resultado.split(',')
