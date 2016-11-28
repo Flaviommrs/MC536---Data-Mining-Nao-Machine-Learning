@@ -7,8 +7,8 @@ import datetime
 
 class trends:
         
-    google_username = "machinelearningnaoedataminingail.com"
-    google_password = "MLneDM42"
+    google_username = "tlgimenes"
+    google_password = "nP6QtP0zBTieoe5530"
 
     PERIOD_SIZE = 670
 
