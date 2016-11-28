@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import json
 
 from models import Medicamento, Doenca, Causa, Trata
 
@@ -31,14 +32,20 @@ def medicamentos(request, nomeDoenca):
 
 	for causa in causas:
 		med = Trata.objects.filter(sintoma=causa.sintoma)
-		print
 		for m in med:
-			print(m)
-			medicamentos.append(m)
+			aux = { 
+				'Registro':m.medicamento.registro, 
+				'Apresentacao':m.medicamento.apresentacao, 
+				'PrincipioAtivo':m.medicamento.principio_ativo, 
+				'Nome':m.medicamento.nome_venda, 
+				'ClasseTerapeutica':m.medicamento.classe_terapeutica
+				}
+			medicamentos.append(aux)
 
-	print(medicamentos)
+	json_data = json.dumps(medicamentos)
 
-	context = {'medicamentos': medicamentos}
+	context = {'medicamentos': json_data}
+
 	return render(request, 'estoque/medicamentos.html', context)
 
 # def previsao(request, idRemedio):
