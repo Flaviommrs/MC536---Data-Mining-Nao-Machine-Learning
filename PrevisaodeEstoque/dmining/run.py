@@ -63,6 +63,8 @@ db = db.load_csv('ES', '../trends/Sudeste/csvES120161127225442295532.csv');
 db = db.load_csv('ES', '../trends/Sudeste/csvES220161127230446566809.csv');
 db = db.load_csv('ES', '../trends/Sudeste/csvES320161128002313439772.csv');
 db = db.load_csv('ES', '../trends/Sudeste/csvES420161128003318716096.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES420161128003318716096.csv');
+db = db.load_csv('RS', '../trends/Sul/csvRS00.csv');
 
 ################################################################################
 # How to use the DATA MINING algorithm
@@ -70,12 +72,12 @@ db = db.load_csv('ES', '../trends/Sudeste/csvES420161128003318716096.csv');
 nonp = non_parametric(plot=False);
 
 # Print data
-db.plot('febre');
+db.plot('cansaco');
 
 db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 
 # Print Prediction
-db_pred.plot('febre');
+db_pred.plot('cansaco');
 
 db_pred.save_csv();
 
