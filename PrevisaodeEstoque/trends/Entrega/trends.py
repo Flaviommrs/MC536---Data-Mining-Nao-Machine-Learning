@@ -14,9 +14,9 @@ class trends:
 
     TERMS_PER_REQUEST = 5
     
-    #regions = {'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'}
+    regions = {'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'}
     #regions = {'SP', 'RJ', 'MG'}
-    regions = {'SP'}
+    #regions = {'SP'}
 
     dates = ['01/2004 36m', '01/2007 36m', '01/2010 36m', '01/2013 36m', '01/2016 10m']
 
@@ -69,7 +69,6 @@ class trends:
                             self.count = np.max([self.count-1,0])
                             break;
                         except Exception as exp:
-                            print("Não rolou")
                             self.count = self.count + 1
                             self.wait = np.exp2([self.count])
                             print("Espera " + str(datetime.datetime.now()) + ", " + str(self.wait/60))
