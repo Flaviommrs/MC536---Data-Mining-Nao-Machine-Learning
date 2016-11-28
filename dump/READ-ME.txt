@@ -1,4 +1,4 @@
-A execução de cada um dos scripts desta pasta deve ser realizada da seguinte forma:
+A execução de cada um dos scripts de população do banco de dados desta pasta deve ser realizada da seguinte forma:
 
 1)Acesso a pasta PrevisaodeEstoque
 
