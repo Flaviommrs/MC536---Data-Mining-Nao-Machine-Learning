@@ -1,0 +1,60 @@
+Como toda a implementação é realizada utilizando o framework Django como base, o próprio repositório é o código do projeto.
+
+PARTE A) INSTALAÇÃO
+A seguir seguem intruções de como instalar o django.
+
+OBS: instruções oficiais podem ser seguidas em https://docs.djangoproject.com/pt-br/1.10/topics/install/
+
+Instalação para windows:
+
+1) Instalar o python através do link https://python.org/downloads/
+
+2)Instalar o gerenciador de pacotes pip https://pip.pypa.io/en/latest/installing/
+
+3) Instalar o virtualenv e virtualenvwrapper (opcional)
+	Ambiente dedicado para o projeto django
+	Comando: pip install virtualenvwrapper-win
+	
+4)Instalar o django através do pip
+	pip install django
+	
+	
+	
+Instalação para Mac/Linux
+
+1)  Instalar/atualizar o python
+
+2)Instalar o pip
+
+3)Instalar o django	
+	pip install django
+	
+	
+PARTE B) USO DO SISTEMA
+
+O modelo do banco de dados está implementado em \MC536---Data-Mining-Nao-Machine-Learning\PrevisaodeEstoque\estoque\models.py
+
+1) Caso alterações sejam realizadas no modelo, é necessário rodar os seguintes comandos, na pasta \MC536---Data-Mining-Nao-Machine-Learning\PrevisaodeEstoque
+
+	python manage.py makemigrations
+
+	python manage.py migrate
+
+	Os comandos do models.py são convertidos para SQL e o modelo do banco é atualizado.
+
+2)Caso se deseja rodar o servidor fornecido pelo Django para a visualização dos dados no navegador:
+	
+	python manage.py runserver
+	
+	Feito isso, o servidor pode ser acessado pela web através do link http://localhost/admin, login admin com a senha admin1234
+	
+3) Caso se deseje manipular os dados do banco:
+		a) Manipulação pode ser feita pelo navegador, rodando e acessando a página do servidor no browser
+		
+		b) Executar o comando:
+		
+			python manage.py shell
+			
+			O shell python é aberto, e o código de manipulação de dados pode ser escrito e executado
+			
+			Exemplo de código: scrips da pasta [dump]
