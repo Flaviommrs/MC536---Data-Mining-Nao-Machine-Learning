@@ -48,21 +48,21 @@ db = db.load_csv('RJ', '../trends/Sudeste/csvRJ220161127205135510015.csv');
 db = db.load_csv('RJ', '../trends/Sudeste/csvRJ320161127210139988202.csv');
 db = db.load_csv('RJ', '../trends/Sudeste/csvRJ420161127222006798992.csv');
 db = db.load_csv('RJ', '../trends/Sudeste/csvRJ520161127223013242722.csv');
-#db = db.load_csv('SP', '../trends/csvSP00.csv');
-#db = db.load_csv('SP', '../trends/csvSP01.csv');
-#db = db.load_csv('SP', '../trends/csvSP10.csv');
-#db = db.load_csv('SP', '../trends/csvSP11.csv');
-#db = db.load_csv('SP', '../trends/csvSP20.csv');
-#db = db.load_csv('SP', '../trends/csvSP21.csv');
-#db = db.load_csv('SP', '../trends/csvSP30.csv');
-#db = db.load_csv('SP', '../trends/csvSP31.csv');
-#db = db.load_csv('SP', '../trends/csvSP40.csv');
-#db = db.load_csv('SP', '../trends/csvSP50.csv');
-#db = db.load_csv('ES', '../trends/Sudeste/csvES020161127224019765276.csv');
-#db = db.load_csv('ES', '../trends/Sudeste/csvES120161127225442295532.csv');
-#db = db.load_csv('ES', '../trends/Sudeste/csvES220161127230446566809.csv');
-#db = db.load_csv('ES', '../trends/Sudeste/csvES320161128002313439772.csv');
-#db = db.load_csv('ES', '../trends/Sudeste/csvES420161128003318716096.csv');
+db = db.load_csv('SP', '../trends/csvSP00.csv');
+db = db.load_csv('SP', '../trends/csvSP01.csv');
+db = db.load_csv('SP', '../trends/csvSP10.csv');
+db = db.load_csv('SP', '../trends/csvSP11.csv');
+db = db.load_csv('SP', '../trends/csvSP20.csv');
+db = db.load_csv('SP', '../trends/csvSP21.csv');
+db = db.load_csv('SP', '../trends/csvSP30.csv');
+db = db.load_csv('SP', '../trends/csvSP31.csv');
+db = db.load_csv('SP', '../trends/csvSP40.csv');
+db = db.load_csv('SP', '../trends/csvSP50.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES020161127224019765276.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES120161127225442295532.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES220161127230446566809.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES320161128002313439772.csv');
+db = db.load_csv('ES', '../trends/Sudeste/csvES420161128003318716096.csv');
 
 ################################################################################
 # How to use the DATA MINING algorithm

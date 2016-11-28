@@ -99,10 +99,12 @@ class data:
         for s in symptoms:
             csvfile = open('./predictions/'+s+'.csv', 'w')
             spanwriter = csv.writer(csvfile, delimiter=',',quoting=csv.QUOTE_MINIMAL);
+            spanwriter.writerow([s]);
             for state in self._data:
-                data = [state];
-                [data.append(d[0]) for d in self._data[state][s]]
-                spanwriter.writerow(data);
+                if s in self._data[state]:
+                    data = [state];
+                    [data.append(d[0]) for d in self._data[state][s]]
+                    spanwriter.writerow(data);
             date = date_range(start='1/4/2004', periods=len(data)-1, freq='7D')
             date = date.insert(0, 'Date');
             spanwriter.writerow(date)
