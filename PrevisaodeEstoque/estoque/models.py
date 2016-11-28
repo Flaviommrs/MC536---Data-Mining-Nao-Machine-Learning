@@ -57,11 +57,3 @@ class Causa(models.Model):
 
 	def __str__(self):
 		return self.doenca.nome_popular + " causa " + self.sintoma.nome
-
-class Incide(models.Model):
-	incidencia = models.IntegerField(default=0)
-	periodo = models.DurationField()
-	doenca = models.ForeignKey(Doenca, on_delete=models.CASCADE)
-	regiao = models.ForeignKey(Regiao, on_delete=models.CASCADE)
-
-
