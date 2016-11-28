@@ -69,6 +69,8 @@ db = db.load_csv('PR', '../trends/Sul/csvPR00.csv');
 db = db.load_csv('MT', '../trends/Centro/csvMT00.csv');
 db = db.load_csv('MS', '../trends/Centro/csvMS00.csv');
 db = db.load_csv('GO', '../trends/Centro/csvGO00.csv');
+db = db.load_csv('SC', '../trends/Sul/csvSC00.csv');
+db = db.load_csv('SC', '../trends/Sul/csvSC10.csv');
 
 ################################################################################
 # How to use the DATA MINING algorithm
