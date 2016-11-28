@@ -1,0 +1,19 @@
+dmining/predictions/anemia.csv
+dmining/predictions/arritmia.csv
+dmining/predictions/aumento do tamanho do baco.csv
+dmining/predictions/aumento do tamanho do figado.csv
+dmining/predictions/calafrios.csv
+dmining/predictions/cansaco.csv
+dmining/predictions/confusao mental.csv
+dmining/predictions/convulsoes.csv
+dmining/predictions/crescimento progressivo das feridas.csv
+dmining/predictions/aparecimento de feridas na pele.csv
+dmining/predictions/desorientacao.csv
+dmining/predictions/diarreia.csv
+dmining/predictions/dificuldade de concentracao.csv
+dmining/predictions/dor abdominal.csv
+dmining/predictions/dor atras dos olhos.csv
+dmining/predictions/dor de cabeca.csv
+dmining/predictions/dor lombar.csv
+dmining/predictions/dor muscular.csv
+dmining/predictions/dor nas articulacoes.csv
