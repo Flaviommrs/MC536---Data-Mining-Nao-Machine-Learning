@@ -66,4 +66,4 @@ terms0 = terms[0:half]
 terms1 = terms[half:int(len(terms))]
 
 print(trend.get_trends_safe(terms0))
-print(trend.get_trends_safe(terms1))
+##print(trend.get_trends_safe(terms1))

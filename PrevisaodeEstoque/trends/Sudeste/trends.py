@@ -15,7 +15,7 @@ class trends:
     TERMS_PER_REQUEST = 5
     
     #regions = {'AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'}
-    regions = {'MT', 'RJ', 'ES'}
+    regions = {'ES'}
     #regions = {'SP'}
 
     dates = ['01/2004 36m', '01/2007 36m', '01/2010 36m', '01/2013 36m', '01/2016 10m']
