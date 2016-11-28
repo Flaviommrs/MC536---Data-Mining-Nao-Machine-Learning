@@ -99,7 +99,7 @@ class data:
         for s in symptoms:
             csvfile = open('./predictions/'+s+'.csv', 'w')
             spanwriter = csv.writer(csvfile, delimiter=',',quoting=csv.QUOTE_MINIMAL);
-            spanwriter.writerow([s]);
+            spanwriter.writerow([s.upper()]);
             for state in self._data:
                 if s in self._data[state]:
                     data = [state];
