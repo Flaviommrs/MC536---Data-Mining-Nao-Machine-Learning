@@ -31,11 +31,11 @@ from data import data
 class non_parametric(dmining):
     def __init__(self, kernel = None, plot = False):
         kernels = []
-        kernels.append(RBF(length_scale=400.0))                                                        # long term smooth rising trend
-        kernels.append(2*RBF(length_scale=300.0) * ExpSineSquared(length_scale=0.1, periodicity=80.0)) # seasonal component
-        kernels.append(ExpSineSquared(length_scale=0.5, periodicity=30.0))                             # seasonal component
-        kernels.append(RationalQuadratic(length_scale=0.01, alpha=20)) 
-        kernels.append(WhiteKernel(noise_level=100)) 
+        kernels.append(RBF(length_scale=600.0))                                                        # long term smooth rising trend
+        kernels.append(2*RBF(length_scale=300.0) * ExpSineSquared(length_scale=0.1, periodicity=60.0)) # seasonal component
+        #kernels.append(ExpSineSquared(length_scale=0.1, periodicity=40.0))                             # seasonal component
+        #kernels.append(RationalQuadratic(length_scale=0.01, alpha=20)) 
+        #kernels.append(WhiteKernel(noise_level=100)) 
         
         kernel = kernels[0]
         for k in kernels[1:]:
@@ -46,6 +46,7 @@ class non_parametric(dmining):
         self._kernel = kernel if kernel != None else kernel_gpml;
         
         self._gpr = KernelRidge(kernel = self._kernel);
+        #self._gpr = GPR(kernel = self._kernel, normalize_y=True, n_restarts_optimizer=1);
         self._reg = {}
         self._ssreg = {}
         self._db = None;
