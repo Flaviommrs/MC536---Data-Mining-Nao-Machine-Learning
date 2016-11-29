@@ -58,3 +58,11 @@ O modelo do banco de dados está implementado em \MC536---Data-Mining-Nao-Machin
 			O shell python é aberto, e o código de manipulação de dados pode ser escrito e executado
 			
 			Exemplo de código: scrips da pasta [dump]
+
+4) Endpoints existentes no programa:
+	localhost:8000/estoque/filtro - pagina inicial
+	localhost:8000/estoque/medicamentos/(nome de uma doença) - pagina inicial com resultados da pesquisa
+	localhost:8000/estoque/previsao/(numero de registro de um medicamento) - pagina de previsão com o mapa do Brasil
+	localhost:8000/estoque/help - pagina de help
+	localhost:8000/estoque/equipe - pagina da equipe
+	localhost:8000/admin - pagina de administração
