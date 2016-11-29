@@ -139,12 +139,12 @@ db = db.load_csv('SE', '../trends/Nordeste0/csvSE02.csv');
 nonp = non_parametric(plot=False);
 
 # Print data
-db.plot('cansaco');
+db.plot('febre');
 
 db_pred = nonp.predict(np.arange(0,2*db._shape[0]), db);
 
 # Print Prediction
-db_pred.plot('cansaco');
+db_pred.plot('febre');
 
 db_pred.save_csv();
 
