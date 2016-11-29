@@ -102,11 +102,11 @@
 		
 			data: dataSet,
 			columns: [
-				{ title: "Sintoma" },
 				{ title: "Registro" },
-				{ title: "Princípio Ativo" },
 				{ title: "Apresentação" },
-				{ title: "Nome de venda" }
+				{ title: "Princípio Ativo" },
+				{ title: "Nome de Venda" },
+				{ title: "Sintomaa" }
 			]
 		} );
 		
@@ -114,7 +114,7 @@
 			  
 		$('#meds tbody').on('click', 'tr', function () {
 			var data = table.row( this ).data();
-			location.href = "equipe.html";
+			location.href = "{% url 'estoque:previsao' %}";
 		} );
 
     });
