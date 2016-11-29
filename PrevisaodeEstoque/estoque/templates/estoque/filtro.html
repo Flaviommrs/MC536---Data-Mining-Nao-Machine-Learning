@@ -91,35 +91,37 @@
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="./files/jquery.min.js"></script>
-	<script src="./files/bootstrap.min.js"></script>
-	<script src="./files/jquery.dataTables.min.js"></script>
-	<script src="./files/dataTables.bootstrap.min.js"></script>	
+  <script src="{% static 'estoque/jquery.min.js' %}"></script>
+	<script src="{% static 'estoque/bootstrap.min.js' %}"></script>
+  <script src="{% static 'estoque/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'estoque/dataTables.bootstrap.min.js' %}"></script>	
+
+
 	<script>
 
-    var dataSet = {{medicamentos|safe}};
+    var dataSet;
 	$(document).ready(function() {
 		var table = $('#meds').DataTable( {
 		
 			data: dataSet,
-			columns: [
-				{ title: "Sintomas" },
+      columns: [
 				{ title: "Registro" },
-				{ title: "Princípio Ativo" },
 				{ title: "Apresentação" },
-				{ title: "Nome de venda" }
+				{ title: "Princípio Ativo" },
+				{ title: "Nome de venda" },
+				{ title: "Sintomas" }
 			]
 		} );
 		
 		$("form").submit(function(e){
 			e.preventDefault();
 			var selected = $( "#selectDoenca option:selected" ).text();
-			location.href = "{% url 'estoque:medicamento' selected %}";
+			window.location.href = '/estoque/medicamentos/' + selected;
 		});
 		
 		$('#meds tbody').on('click', 'tr', function () {
 			var data = table.row( this ).data();
-			location.href = "{% url 'estoque:previsao' data[0]%}";
+			window.location.href = '/estoque/previsao/' + data[0];
 		} );
 		
     });

@@ -65,7 +65,10 @@
 		  </div>
 		</div>
   <style>
-
+  .estado {
+    fill: white;
+  }
+  
   .state_contour {
     fill: none;
     stroke: black;
@@ -77,9 +80,10 @@
 		<script src="{% static 'estoque/jquery.min.js' %}"></script>
 		<script src="{% static 'estoque/bootstrap.min.js' %}"></script>
 		<script src="{% static 'estoque/bootstrap-slider.js' %}"></script>
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="https://d3js.org/d3-queue.v2.min.js"></script>
-  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <script src="{% static 'estoque/d3.v3.min.js' %}"></script>
+  <script src="{% static 'estoque/d3-queue.v2.min.js' %}"></script>
+  <script src="{% static 'estoque/topojson.v1.min.js' %}"></script>
+  
   <script>
 	var dados ={{previsao|safe}};
 var time = 1;
@@ -119,11 +123,11 @@ var time = 1;
 		var g2 = svg2.append("g");
 		
 		var color1 = d3.scale.threshold()
-			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100])
+			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100, 1000])
 			.range(["#ffe6e6","#ffcccc","#ffb3b3","#ff9999","#ff8080","#ff6666","#ff4d4d","#ff3333","#ff1a1a","#ff0000"]);
 
 		var color2 = d3.scale.threshold()
-			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100])
+			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100, 1000])
 			.range(["#ecc6ec","#e6b3e6","#df9fdf","#d98cd9","#d279d2","#cc66cc","#c653c6","#bf40bf","#ac39ac","#993399"]);
 			
 		// Align center of Brazil to center of map

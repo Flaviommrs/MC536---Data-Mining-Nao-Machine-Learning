@@ -46,7 +46,7 @@ def medicamentos(request, nomeDoenca):
 
 	context = {'medicamentos': json_data}
 
-	return render(request, 'estoque/filtro.html', context)
+	return render(request, 'estoque/medicamentos.html', context)
 
 def previsao(request, registro):
 

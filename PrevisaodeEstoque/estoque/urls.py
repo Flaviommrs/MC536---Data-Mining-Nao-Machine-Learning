@@ -6,6 +6,7 @@ app_name='estoque'
 urlpatterns = [
     # url(r'^updateDB/$', views.updateDB, name='updateDB'),
     # url(r'^fit/$', views.fit, name='fit'),
+    url(r'^$', views.filtro, name='filtro'),
     url(r'^filtro/$', views.filtro, name='filtro'),
     url(r'^equipe/$', views.equipe, name='equipe'),
     url(r'^help/$', views.help, name='help'),

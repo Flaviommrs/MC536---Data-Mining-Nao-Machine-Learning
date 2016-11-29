@@ -1,3 +1,127 @@
-<script type="text/javascript">
- var data = {{medicamentos|safe}};
-</script>
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+  {% load static %}
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
+	<link rel="stylesheet" href="{% static "estoque/style.css" %}">
+
+	<title>PEM - home</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="{% static "estoque/bootstrap.min.css" %}" rel="stylesheet">
+	<!-- Custom styles-->
+	<link href="{% static "estoque/dashboard.css" %}" rel="stylesheet">
+	<!-- datatables styles-->
+	<link href="{% static "estoque/dataTables.bootstrap.min.css" %}" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+	<div class=image-page>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{% url 'estoque:filtro' %}">Previsão de Estoque de Medicamentos</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+			<li><a href="{% url 'estoque:equipe' %}">Equipe</a></li>
+      <li><a href="{% url 'estoque:help' %}">Help</a></li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1 class="page-header">Pesquisa</h1>
+			<form class="form-horizontal">
+				<fieldset>
+				
+					<div class="well well col-lg-10">
+						<div class="form-group">
+							<label for="selectDoenca" class="col-lg-2 control-label">Doença</label>
+							<div class="col-lg-5">
+								<select class="form-control" id="selectDoenca">
+									<option>Dengue</option>
+									<option>Doenca de chagas</option>
+                  <option>Esquistossomose</option>
+									<option>Febre Tifoide</option>
+                  <option>Hantavirose</option>
+                  <option>Leishmaniose tegumentar</option>
+                  <option>Leishmaniose visceral</option>
+                  <option>Leptospirose</option>
+									<option>Malaria</option>
+                  <option>Meningite</option>
+									<option>Tetano</option>
+								</select>
+							</div>
+  						<div class="col-lg-5 col-lg-offset-0">
+							<button id="pesquisar" type="submit" class="btn btn-primary" >Pesquisar</button>
+						</div>
+						</div>
+					</div>
+				
+				</fieldset>
+			</form>
+			
+		<div id="table"  style="cursor:pointer">
+			<h2 class="sub-header">Medicamentos Relacionados</h2>
+			<span class="help-block">Selecione o medicamento que você deseja ver a previsão.</span>
+			<div class="col-lg-10">
+			  <table id="meds" class="table table-striped table-bordered" cellspacing="0" width="100%"></table>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+  <script src="{% static 'estoque/jquery.min.js' %}"></script>
+	<script src="{% static 'estoque/bootstrap.min.js' %}"></script>
+  <script src="{% static 'estoque/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'estoque/dataTables.bootstrap.min.js' %}"></script>	
+	<script>
+
+    var dataSet = {{medicamentos|safe}};
+	$(document).ready(function() {
+		var table = $('#meds').DataTable( {
+		
+			data: dataSet,
+    columns: [
+				{ title: "Registro" },
+				{ title: "Apresentação" },
+				{ title: "Princípio Ativo" },
+				{ title: "Nome de venda" },
+				{ title: "Sintomas" }
+			]
+		} );
+		
+		$("form").submit(function(e){
+			e.preventDefault();
+			var selected = $( "#selectDoenca option:selected" ).text();
+			window.location.href = '/estoque/medicamentos/' + selected;
+		});
+		
+		$('#meds tbody').on('click', 'tr', function () {
+			var data = table.row( this ).data();
+			window.location.href = '/estoque/previsao/' + data[0];
+		} );
+		
+    });
+	</script>
+</body></html>
