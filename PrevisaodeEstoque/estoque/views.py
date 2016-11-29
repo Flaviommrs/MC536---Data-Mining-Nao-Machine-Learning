@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 
-from models import Medicamento, Doenca, Causa, Trata, Previsao
+from .models import Medicamento, Doenca, Causa, Trata, Previsao
 
 # Create your views here.
 

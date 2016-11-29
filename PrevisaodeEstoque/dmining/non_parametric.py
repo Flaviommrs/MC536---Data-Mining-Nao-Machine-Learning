@@ -33,9 +33,9 @@ class non_parametric(dmining):
         kernels = []
         kernels.append(RBF(length_scale=600.0))                                                        # long term smooth rising trend
         kernels.append(2*RBF(length_scale=300.0) * ExpSineSquared(length_scale=0.1, periodicity=60.0)) # seasonal component
-        #kernels.append(ExpSineSquared(length_scale=0.1, periodicity=40.0))                             # seasonal component
-        #kernels.append(RationalQuadratic(length_scale=0.01, alpha=20)) 
-        #kernels.append(WhiteKernel(noise_level=100)) 
+        kernels.append(ExpSineSquared(length_scale=0.1, periodicity=40.0))                             # seasonal component
+        kernels.append(RationalQuadratic(length_scale=0.01, alpha=20)) 
+        kernels.append(WhiteKernel(noise_level=100)) 
         
         kernel = kernels[0]
         for k in kernels[1:]:

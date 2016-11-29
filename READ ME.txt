@@ -58,3 +58,7 @@ O modelo do banco de dados está implementado em \MC536---Data-Mining-Nao-Machin
 			O shell python é aberto, e o código de manipulação de dados pode ser escrito e executado
 			
 			Exemplo de código: scrips da pasta [dump]
+
+4) Fazendo previsoes nao parametricas
+    a) Para fazer previsoes utilizando regressao nao parametrica, por favor leia
+    o readme em ./PrevisaodeEstoque/dmining
