@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
+	<link rel="stylesheet" href="{% static "estoque/style.css" %}">
 
 	<title>PEM - help</title>
 
@@ -34,6 +35,8 @@
 
 	<body>
 
+	<div class=image-page>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 		<div class="navbar-header">
@@ -57,12 +60,11 @@
 	<div class="container">
 			<div class="jumbotron">
 			  <h1>Help</h1>
-			  <p>A previsão de medicamentos disponível nesta página funciona através de uma busca por uma doença e por uma região do Brasil.
-			  As doenças e regiões cadastradas estão disponiveis para consulta na <a href="{% url 'estoque:filtro' %}">página</a> principal.</p>
-			  <p>De acordo com os dados fornecidos na busca, uma lista é gerada com a quantidade de medicamentos disponíveis para tratar uma
-			  determinada doença, o nome do medicamento, o seu composto ativo, como o medicamento é apresentado e a 
-			  classe terapêutica desse medicamento.</p>
-			  <p>Selecionando o medicamento desejado, é possível visualizar um mapa interativo que indica os estoques na região pesquisada </p>
+			  <p>A previsão de medicamentos disponível nesta página funciona através de uma busca por uma doença na <a href="filtro.html">página</a> principal.</p>
+			  <p>De acordo com o nome da doença, o algoritmo executa uma busca pelos sintomas cadastrados no banco e exibe uma lista de medicamentos que tratam
+			  os seus sintomas.</p> 
+			  <p>A partir da lista de medicamentos, selecionamos um deles para previsão e temos acesso à uma nova página, que exibirá
+			  o mapa do brasil e um intervalo de tempo - em anos. Selecionando o intervalo de tempos, visualizamos a previsão no mapa de modo interativo </p>
 			  
 			  <div class="panel panel-danger">
 				  <div class="panel-heading">
@@ -91,5 +93,6 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="./files/ie10-viewport-bug-workaround.js.download"></script>
 	
+	</div>
 
 </body></html>

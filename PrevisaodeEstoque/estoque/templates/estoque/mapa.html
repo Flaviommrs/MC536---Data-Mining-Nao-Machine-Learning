@@ -9,6 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="{% static "estoque/icon.jpg" %}">
+	<link rel="stylesheet" href="{% static "estoque/style.css" %}">
 
 	<title>PEM - Mapa</title>
 
@@ -16,9 +17,10 @@
 	<link href="{% static "estoque/bootstrap.min.css" %}"rel="stylesheet">
 	<!-- Custom styles-->
 	<link href="{% static "estoque/dashboard.css" %}" rel="stylesheet">
-
+	<link href="{% static "estoque/bootstrap-slider.css" %}" rel="stylesheet">
 	</head>
 	<body>
+	
     <nav class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="container-fluid">
 	    <div class="navbar-header">
@@ -40,15 +42,29 @@
 	  </nav>
 
 	  <div class="container">
-		  <h1 class="page-header">Estoque Previsto</h1>
-      <svg></svg>
-    </div>
-  <style>
+			<div class="col-lg-12">
+				<h1 class="page-header">Estoque Previsto</h1>
+			</div>
+			<div class="col-lg-12">
+				<input id="slider" type="text" style="width:100%"/>
+				<span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="time">1</span></span>
 
-  .SP {
-    fill: blue;
-    fill-opacity: 1;
-  }
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<h3 class="page-header">Predição a base de Kernel</h3>
+				</div>
+				<div class="col-lg-6">
+					<h3 class="page-header">Predição com Redes Neurais</h3>
+				</div>
+				
+			</div>
+			<div class="row">
+		  	<div id="svg1" class="col-lg-6"></div>
+			  <div id="svg2" class="col-lg-6"></div>
+		  </div>
+		</div>
+  <style>
 
   .state_contour {
     fill: none;
@@ -57,76 +73,132 @@
   }
 
   </style>
+		
+		<script src="{% static 'estoque/jquery.min.js' %}"></script>
+		<script src="{% static 'estoque/bootstrap.min.js' %}"></script>
+		<script src="{% static 'estoque/bootstrap-slider.js' %}"></script>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://d3js.org/d3-queue.v2.min.js"></script>
   <script src="https://d3js.org/topojson.v1.min.js"></script>
   <script>
+	var dados ={{previsao|safe}};
+var time = 1;
+		
+		$("#slider").slider({
+				min: 1, 
+				max: 770, 
+				value: 1,
+				tooltip: 'always'});
+				
+		$("#slider").on("slide", function(slideEvt) {
+			$("#time").text(slideEvt.value);
+			time = slideEvt.value;
+			d3_queue.queue()
+				.defer(d3.json, "files/br.json")
+				//.defer(d3.tsv, "files/qtd.tsv")
+				.await(ready);
+		});
 
-  // Define map size on screen
-  var width = 960,
-      height = 600;
+		var width = 600;
+		var height = 500;
+		
+		var svg1 = d3.select('div[id="svg1"]').append("svg")
+				.attr("id", "svg1")
+				.attr("width", "100%")
+				.attr("height", 500)
+				.style("position", "relative");
+		
+		var svg2 = d3.select('div[id="svg2"]').append("svg")
+				.attr("id", "svg2")
+				.attr("width", "100%")
+				.attr("height", 500)
+				.style("position", "relative");
 
-  var svg = d3.select("body").append("svg")
-      .attr("width", width)
-      .attr("height", height);
+		
+		var g1 = svg1.append("g");
+		var g2 = svg2.append("g");
+		
+		var color1 = d3.scale.threshold()
+			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100])
+			.range(["#ffe6e6","#ffcccc","#ffb3b3","#ff9999","#ff8080","#ff6666","#ff4d4d","#ff3333","#ff1a1a","#ff0000"]);
 
-  var g = svg.append("g");
-
-  var zoom = d3.behavior.zoom()
-    .translate([0, 0])
-    .scale(1)
-    .scaleExtent([1, 8])
-    .on("zoom", zoomed);
-
-  svg.call(zoom) // delete this line to disable free zooming
-    .call(zoom.event);
-
-  // Align center of Brazil to center of map
-  var projection = d3.geo.mercator()
-    .scale(650)
-    .center([-52, -15])
-    .translate([width / 2, height / 2]);
-
-  var path = d3.geo.path()
-    .projection(projection);
-
-  // Load data (asynchronously)
-  d3_queue.queue()
-      .defer(d3.json, "{% static "estoque/br.json" %}")
-      .await(ready);
-
-  var color = d3.scaleThreshold()
-    .domain(d3.range(2, 10))
-    .range(d3.schemeBlues[9]);
-
-  function ready(error, shp) {
-    if (error) throw error;
-
-    // Extracting polygons and contours
-    var states = topojson.feature(shp, shp.objects.estados);
-    var states_contour = topojson.mesh(shp, shp.objects.estados);
-
-    // Desenhando estados
-    g.selectAll(".estado")
-        .data(states.features)
-      .enter()
-        .append("path")
-        .attr("class", function(d) { return d.id; })
-        .attr("fill", function(d) { return color(d.rate = unemployment.get(d.id)); })
-        .attr("d", path);
-
-    g.append("path")
-      .datum(states_contour)
-      .attr("d", path)
-      .attr("class", "state_contour");
-  }
-
-  // What to do when zooming
-  function zoomed() {
-    g.style("stroke-width", 1.5 / d3.event.scale + "px");
-    g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  }
-  d3.select(self.frameElement).style("height", height + "px");
-
+		var color2 = d3.scale.threshold()
+			.domain([20, 30, 40, 50, 60, 70, 80, 90, 100])
+			.range(["#ecc6ec","#e6b3e6","#df9fdf","#d98cd9","#d279d2","#cc66cc","#c653c6","#bf40bf","#ac39ac","#993399"]);
+			
+		// Align center of Brazil to center of map
+		var projection = d3.geo.mercator()
+			.scale(650)
+			.center([-52, -15])
+			.translate([width / 2, height / 2]);
+		
+		var path = d3.geo.path()
+			.projection(projection);
+		// Load data (asynchronously)
+		
+		d3_queue.queue()
+				.defer(d3.json, "files/br.json")
+				//.defer(d3.tsv, "files/qtd.tsv")
+				.await(ready);
+			
+		kernelObj = [];
+		redeObj = [];
+		
+		dados.forEach(function(d){
+			if(d[1] == "rede"){
+				redeObj.push({
+					"id":d[0],
+					"qtd":d.slice(2,d.lenght)
+				});
+			}else{
+				kernelObj.push({
+					"id":d[0],
+					"qtd":d.slice(2,d.lenght)
+				});
+			}
+		});
+		
+		function ready(error, shp) {
+			if (error) throw error;
+			
+			//var qtd_estado = {};
+			//qtd.forEach(function(d) { qtd_estado[d.id] = +d.quantidade; });
+			var kernel = {};
+			var rede = {};
+			kernelObj.forEach(function(d) { kernel[d.id] = +d.qtd[time]; });
+			redeObj.forEach(function(d) { rede[d.id] = +d.qtd[time]; });
+  
+			// Extracting polygons and contours
+			var states = topojson.feature(shp, shp.objects.estados);
+			var states_contour = topojson.mesh(shp, shp.objects.estados);
+			
+			// Desenhando estados
+			g1.selectAll(".estado")
+					.data(states.features)
+				.enter()
+					.append("path")
+					.attr("class", function(d) { return d.id; })
+					.attr("d", path)
+					//.style("fill", function(d) { return color1(qtd_estado[d.id]); });
+					.style("fill", function(d) { return color1(kernel[d.id	]); });
+			g1.append("path")
+				.datum(states_contour)
+				.attr("d", path)
+				.attr("class", "state_contour");
+				
+			// Desenhando estados
+			g2.selectAll(".estado")
+					.data(states.features)
+				.enter()
+					.append("path")
+					.attr("class", function(d) { return d.id; })
+					.attr("d", path)
+					.style("fill", function(d) { return color2(rede[d.id]); });
+					//.style("fill", function(d) { return color2(qtd_estado[d.id]); });
+			g2.append("path")
+				.datum(states_contour)
+				.attr("d", path)
+				.attr("class", "state_contour");
+		}
   </script>
 </body></html>
