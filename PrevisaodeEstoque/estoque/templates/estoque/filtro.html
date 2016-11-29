@@ -57,20 +57,20 @@
 							<div class="col-lg-5">
 								<select class="form-control" id="selectDoenca">
 									<option>Dengue</option>
-									<option>Doença de chagas</option>
+									<option>Doenca de chagas</option>
                   <option>Esquistossomose</option>
-                  <option>Febre Tifóide</option>
+									<option>Febre Tifoide</option>
                   <option>Hantavirose</option>
                   <option>Leishmaniose tegumentar</option>
                   <option>Leishmaniose visceral</option>
                   <option>Leptospirose</option>
-                  <option>Malária</option>
+									<option>Malaria</option>
                   <option>Meningite</option>
-                  <option>Tétano</option>
+									<option>Tetano</option>
 								</select>
 							</div>
   						<div class="col-lg-5 col-lg-offset-0">
-							<button type="submit" class="btn btn-primary" data-toggle="collapse" onclick="$('#table').collapse('show');">Pesquisar</button>
+							<button id="pesquisar" type="submit" class="btn btn-primary" >Pesquisar</button>
 						</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 				</fieldset>
 			</form>
 			
-		<div id="table" class="collapse" style="cursor:pointer">
+		<div id="table"  style="cursor:pointer">
 			<h2 class="sub-header">Medicamentos Relacionados</h2>
 			<span class="help-block">Selecione o medicamento que você deseja ver a previsão.</span>
 			<div class="col-lg-10">
@@ -98,25 +98,30 @@
 	<script>
 
     var dataSet = {{medicamentos|safe}};
+	$(document).ready(function() {
 		var table = $('#meds').DataTable( {
 		
 			data: dataSet,
 			columns: [
+				{ title: "Sintomas" },
 				{ title: "Registro" },
-				{ title: "Apresentação" },
 				{ title: "Princípio Ativo" },
-				{ title: "Nome de Venda" },
-				{ title: "Sintomaa" }
+				{ title: "Apresentação" },
+				{ title: "Nome de venda" }
 			]
 		} );
 		
+		$("form").submit(function(e){
+			e.preventDefault();
+			var selected = $( "#selectDoenca option:selected" ).text();
+			location.href = "{% url 'estoque:medicamento' selected %}";
+		});
 		
-			  
 		$('#meds tbody').on('click', 'tr', function () {
 			var data = table.row( this ).data();
-			location.href = "{% url 'estoque:previsao' %}";
+			location.href = "{% url 'estoque:previsao' data[0]%}";
 		} );
-
+		
     });
 	</script>
 </body></html>
