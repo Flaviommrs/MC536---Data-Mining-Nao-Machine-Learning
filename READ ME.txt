@@ -66,3 +66,8 @@ O modelo do banco de dados está implementado em \MC536---Data-Mining-Nao-Machin
 	localhost:8000/estoque/help - pagina de help
 	localhost:8000/estoque/equipe - pagina da equipe
 	localhost:8000/admin - pagina de administração
+
+5) Fazendo previsoes nao parametricas
+    a) Para fazer previsoes utilizando regressao nao parametrica, por favor leia
+    o readme em ./PrevisaodeEstoque/dmining
+

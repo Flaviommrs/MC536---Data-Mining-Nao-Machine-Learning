@@ -40,15 +40,16 @@ db = db.load_csv('BR', './mock.csv');
 # creates the non parametric learner
 nonp = non_parametric(plot=False);
 
-#db.plot('esquistossomose')
-db.plot('febre')
-#db.plot('diarreia')
+#db.plot('febre')
+db.plot('dores no corpo')
 
 db_pred = nonp.predict(np.arange(0,350), db);
 
-#db_pred.plot('esquistossomose')
-db_pred.plot('febre')
-#db_pred.plot('diarreia')
+#db_pred.plot('febre')
+db_pred.plot('dores no corpo')
+
+db_pred.save_csv();
+
 plt.show();
 
 ################################################################################
