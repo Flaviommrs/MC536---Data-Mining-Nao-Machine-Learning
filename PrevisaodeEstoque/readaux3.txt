@@ -1,0 +1,6 @@
+redesneurais/DOR NOS OSSOS.csv
+redesneurais/FEBRE.csv
+redesneurais/MANCHAS VERMELHAS PELO CORPO.csv
+redesneurais/MOLEZA.csv
+redesneurais/NAUSEA.csv
+redesneurais/PERDA DE PALADAR E APETITE.csv
