@@ -11,7 +11,7 @@ Instalação para windows:
 
 2)Instalar o gerenciador de pacotes pip https://pip.pypa.io/en/latest/installing/
 
-3) Instalar o virtualenv e virtualenvwrapper (opcional)
+3) Instalar o virtualenv e virtualenvwrapper (recomendado)
 	Ambiente dedicado para o projeto django
 	Comando: pip install virtualenvwrapper-win
 	
