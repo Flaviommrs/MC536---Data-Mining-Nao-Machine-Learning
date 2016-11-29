@@ -18,7 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
 	url(r'^estoque/', include('estoque.urls')),
-	url(r'^$', include('estoque.urls')),
+	url(r'^', include('estoque.urls')),
 
     url(r'^admin/', admin.site.urls),
 ]
