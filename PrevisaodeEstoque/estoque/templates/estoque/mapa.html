@@ -94,7 +94,7 @@ var time = 1;
 			$("#time").text(slideEvt.value);
 			time = slideEvt.value;
 			d3_queue.queue()
-				.defer(d3.json, "files/br.json")
+				.defer(d3.json, "{% static 'estoque/br.json' %}")
 				//.defer(d3.tsv, "files/qtd.tsv")
 				.await(ready);
 		});
@@ -137,7 +137,7 @@ var time = 1;
 		// Load data (asynchronously)
 		
 		d3_queue.queue()
-				.defer(d3.json, "files/br.json")
+				.defer(d3.json, "{% static 'estoque/br.json' %}")
 				//.defer(d3.tsv, "files/qtd.tsv")
 				.await(ready);
 			
@@ -145,15 +145,15 @@ var time = 1;
 		redeObj = [];
 		
 		dados.forEach(function(d){
-			if(d[1] == "rede"){
+			if(d[0] == "redes neurais"){
 				redeObj.push({
-					"id":d[0],
-					"qtd":d.slice(2,d.lenght)
+					"id":d[1],
+					"qtd":d[2]
 				});
 			}else{
 				kernelObj.push({
-					"id":d[0],
-					"qtd":d.slice(2,d.lenght)
+					"id":d[1],
+					"qtd":d[2]
 				});
 			}
 		});
