@@ -1,0 +1,79 @@
+clear;
+clc;
+
+
+%load time series - eacho series in a column
+time_series = csvread('csvAP00.csv',1,1);
+%time_series = dengue_SP;
+time_series_size = [670 670 670 670 670];
+num_series = 5;
+%values to predict
+num_predictions = 100;
+iteration = 3
+%for iteration=1 : num_series
+    
+    delete_temp_files;
+    
+    auto_correlacao = calc_cor(time_series(:,iteration));
+    num_inputs = find(auto_correlacao<0.3,1);
+    if(isempty(num_inputs))
+       num_inputs=20; 
+    end
+    soma = sum(time_series(:,iteration));
+    if(soma<5)
+        iteration
+       %continue;
+    end
+    
+    
+    S = time_series(1:time_series_size(iteration),iteration);
+    %S = time_series;
+    %S = S / norm(S);
+    for k=1 : time_series_size(iteration) - num_inputs
+       for j=1 : num_inputs
+          X(k,j) = S(k+j-1);
+       end
+    end
+    X = [X ones(length(X(:,1)),1)]
+    %aqui ja temos a serie temporal normalizada e o conjunto de treinamento
+    %X já montado.
+    %Agora vamos separar os k folds para treinamento, validação e testes
+    num_neurons_hidden_layer = time_series_size(iteration)/(5*(num_inputs+1));
+    gen_k_folds;
+    nn1h_k_folds;
+    
+    %neural networks trained
+    %now we need to generate a prediction
+    saida = time_series(1:time_series_size(iteration),iteration);
+    %S = S / norm(S);
+    for cur_prediction = 1 : num_predictions
+        for fold = 1 : 10
+            
+            load(strcat('w1v',sprintf('%d',fold)));
+            load(strcat('w2v',sprintf('%d',fold)));
+            last_index = size(saida);
+            last_index = last_index(1);
+            
+            
+            input = saida(last_index(1)-length(w1(1,:))+1:last_index);
+            %input
+            %last_index(1)-length(w1(1,:))+1
+            %last_index(1)
+            input = input';
+            N = length(input);
+            
+            Srn(fold) = [tanh(input*w1') ones(1,1)]*w2';
+            
+        end
+        %tomar a predicao como resultado do ensemble
+        %input
+        prediction = ceil(mean(Srn));
+        prediction
+        clear Srn;
+        saida = vertcat(saida,prediction);
+        size(saida);
+    end
+    
+    
+    
+%end
