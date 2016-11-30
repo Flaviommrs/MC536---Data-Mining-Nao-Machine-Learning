@@ -19,11 +19,10 @@ dmining/predictions/dor muscular.csv
 dmining/predictions/dor nas articulacoes.csv
 dmining/predictions/dor no corpo.csv
 dmining/predictions/dor nos ossos.csv
-dmining/predictions/dores no corpo.csv
 dmining/predictions/fadiga.csv
 dmining/predictions/febre.csv
 dmining/predictions/fotossensibilidade.csv
-dmining/predictions/hemoragias.csv
+dmining/predictions/hemorragias.csv
 dmining/predictions/hipotensao.csv
 dmining/predictions/ictericia.csv
 dmining/predictions/indisposicao.csv

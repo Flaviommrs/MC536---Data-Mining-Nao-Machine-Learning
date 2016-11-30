@@ -1,37 +1,37 @@
 redesneurais/ANEMIA.csv
-redesneurais/APARECIMENTO DE FERIDAS NA PELE.CSV
-redesneurais/ARRITIMIA
-redesneurais/AUMENTO DO TAMANHO DO BACO.CSV
-redesneurais/AUMENTO DO TAMANHO DO FIGADO.CSV
-redesneurais/CONFUSAO MENTAL.CSV
-redesneurais/CONVULSOES.CSV
-redesneurais/CRESCIMENTO PROGRESSIVO DE FERIDAS.CSV
-redesneurais/DESORIENTACAO.CSV
-redesneurais/DIARREIA.CSV
-redesneurais/DIFICULDADE DE CONCENTRACAO.CSV
-redesneurais/DOR ABDOMINAL.CSV
-redesneurais/DOR LOMBAR.CSV
-redesneurais/DOR NO CORPO.CSV
+redesneurais/APARECIMENTO DE FERIDAS NA PELE.csv
+redesneurais/ARRITMIA.csv
+redesneurais/AUMENTO DO TAMANHO DO BACO.csv
+redesneurais/AUMENTO DO TAMANHO DO FIGADO.csv
+redesneurais/CONFUSAO MENTAL.csv
+redesneurais/CONVULSOES.csv
+redesneurais/CRESCIMENTO PROGRESSIVO DAS FERIDAS.csv
+redesneurais/DESORIENTACAO.csv
+redesneurais/DIARREIA.csv
+redesneurais/DIFICULDADE DE CONCENTRACAO.csv
+redesneurais/DOR ABDOMINAL.csv
+redesneurais/DOR LOMBAR.csv
+redesneurais/DOR NO CORPO.csv
 redesneurais/DOR NOS OSSOS.csv
-redesneurais/FADIGA.CSV
-redesneurais/FALTA DE APETITE.CSV
+redesneurais/FADIGA.csv
+redesneurais/FALTA DE APETITE.csv
 redesneurais/FEBRE.csv
-redesneurais/FOTOSSENSIBILIDADE.CSV
-redesneurais/HEMORRAGIAS.CSV
-redesneurais/HIPOTENSAO.CSV
-redesneurais/INDISPOSICAO.CSV
-redesneurais/IRRITACAO SOBRE A PELE.CSV
-redesneurais/MAL ESTAR.CSV
-redesneurais/MANCHAS ROSADAS NO TRONCO.CSV
+redesneurais/FOTOSSENSIBILIDADE.csv
+redesneurais/HEMORRAGIAS.csv
+redesneurais/HIPOTENSAO.csv
+redesneurais/INDISPOSICAO.csv
+redesneurais/IRRITACAO SOBRE A PELE.csv
+redesneurais/MAL ESTAR.csv
+redesneurais/MANCHAS ROSADAS NO TRONCO.csv
 redesneurais/MANCHAS VERMELHAS PELO CORPO.csv
 redesneurais/MOLEZA.csv
 redesneurais/NAUSEA.csv
-redesneurais/PALIDEZ.CSV
+redesneurais/PALIDEZ.csv
 redesneurais/PERDA DE PALADAR E APETITE.csv
-redesneurais/PERDA DE PESO.CSV
-redesneurais/RUBOR FACIAL.CSV
-redesneurais/SANGUE NAS FEZES.CSV
-redesneurais/SURGIMENTO DE NODULOS.CSV
-redesneurais/TONTURA.CSV
-redesneurais/TOSSE.CSV
-redesneurais/VOMITO.CSVS
+redesneurais/PERDA DE PESO.csv
+redesneurais/RUBOR FACIAL.csv
+redesneurais/SANGUE NAS FEZES.csv
+redesneurais/SURGIMENTO DE NODULOS.csv
+redesneurais/TONTURA.csv
+redesneurais/TOSSE.csv
+redesneurais/VOMITO.csv
