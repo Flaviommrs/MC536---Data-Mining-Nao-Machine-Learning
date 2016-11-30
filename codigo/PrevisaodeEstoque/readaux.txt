@@ -21,7 +21,6 @@ dmining/predictions/dor no corpo.csv
 dmining/predictions/dor nos ossos.csv
 dmining/predictions/dores no corpo.csv
 dmining/predictions/fadiga.csv
-dmining/predictions/falta de apetite.csv
 dmining/predictions/febre.csv
 dmining/predictions/fotossensibilidade.csv
 dmining/predictions/hemoragias.csv
@@ -34,7 +33,6 @@ dmining/predictions/insuficiencia respiratoria.csv
 dmining/predictions/irritacao sobre a pele.csv
 dmining/predictions/machas rosadas no tronco.csv
 dmining/predictions/mal estar.csv
-dmining/predictions/manchas rosadas no tronco.csv
 dmining/predictions/manchas vermelhas pelo corpo.csv
 dmining/predictions/moleza.csv
 dmining/predictions/nausea.csv
