@@ -1,6 +1,37 @@
+redesneurais/ANEMIA.csv
+redesneurais/APARECIMENTO DE FERIDAS NA PELE.CSV
+redesneurais/ARRITIMIA
+redesneurais/AUMENTO DO TAMANHO DO BACO.CSV
+redesneurais/AUMENTO DO TAMANHO DO FIGADO.CSV
+redesneurais/CONFUSAO MENTAL.CSV
+redesneurais/CONVULSOES.CSV
+redesneurais/CRESCIMENTO PROGRESSIVO DE FERIDAS.CSV
+redesneurais/DESORIENTACAO.CSV
+redesneurais/DIARREIA.CSV
+redesneurais/DIFICULDADE DE CONCENTRACAO.CSV
+redesneurais/DOR ABDOMINAL.CSV
+redesneurais/DOR LOMBAR.CSV
+redesneurais/DOR NO CORPO.CSV
 redesneurais/DOR NOS OSSOS.csv
+redesneurais/FADIGA.CSV
+redesneurais/FALTA DE APETITE.CSV
 redesneurais/FEBRE.csv
+redesneurais/FOTOSSENSIBILIDADE.CSV
+redesneurais/HEMORRAGIAS.CSV
+redesneurais/HIPOTENSAO.CSV
+redesneurais/INDISPOSICAO.CSV
+redesneurais/IRRITACAO SOBRE A PELE.CSV
+redesneurais/MAL ESTAR.CSV
+redesneurais/MANCHAS ROSADAS NO TRONCO.CSV
 redesneurais/MANCHAS VERMELHAS PELO CORPO.csv
 redesneurais/MOLEZA.csv
 redesneurais/NAUSEA.csv
+redesneurais/PALIDEZ.CSV
 redesneurais/PERDA DE PALADAR E APETITE.csv
+redesneurais/PERDA DE PESO.CSV
+redesneurais/RUBOR FACIAL.CSV
+redesneurais/SANGUE NAS FEZES.CSV
+redesneurais/SURGIMENTO DE NODULOS.CSV
+redesneurais/TONTURA.CSV
+redesneurais/TOSSE.CSV
+redesneurais/VOMITO.CSVS

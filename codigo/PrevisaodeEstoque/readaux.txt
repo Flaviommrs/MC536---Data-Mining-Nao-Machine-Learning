@@ -1,4 +1,5 @@
 dmining/predictions/anemia.csv
+dmining/predictions/aparecimento de feridas na pele.csv
 dmining/predictions/arritmia.csv
 dmining/predictions/aumento do tamanho do baco.csv
 dmining/predictions/aumento do tamanho do figado.csv
@@ -7,7 +8,6 @@ dmining/predictions/cansaco.csv
 dmining/predictions/confusao mental.csv
 dmining/predictions/convulsoes.csv
 dmining/predictions/crescimento progressivo das feridas.csv
-dmining/predictions/aparecimento de feridas na pele.csv
 dmining/predictions/desorientacao.csv
 dmining/predictions/diarreia.csv
 dmining/predictions/dificuldade de concentracao.csv
@@ -17,3 +17,33 @@ dmining/predictions/dor de cabeca.csv
 dmining/predictions/dor lombar.csv
 dmining/predictions/dor muscular.csv
 dmining/predictions/dor nas articulacoes.csv
+dmining/predictions/dor no corpo.csv
+dmining/predictions/dor nos ossos.csv
+dmining/predictions/dores no corpo.csv
+dmining/predictions/fadiga.csv
+dmining/predictions/falta de apetite.csv
+dmining/predictions/febre.csv
+dmining/predictions/fotossensibilidade.csv
+dmining/predictions/hemoragias.csv
+dmining/predictions/hipotensao.csv
+dmining/predictions/ictericia.csv
+dmining/predictions/indisposicao.csv
+dmining/predictions/insuficiencia hepatica.csv
+dmining/predictions/insuficiencia renal.csv
+dmining/predictions/insuficiencia respiratoria.csv
+dmining/predictions/irritacao sobre a pele.csv
+dmining/predictions/machas rosadas no tronco.csv
+dmining/predictions/mal estar.csv
+dmining/predictions/manchas rosadas no tronco.csv
+dmining/predictions/manchas vermelhas pelo corpo.csv
+dmining/predictions/moleza.csv
+dmining/predictions/nausea.csv
+dmining/predictions/palidez.csv
+dmining/predictions/perda de paladar e apetite.csv
+dmining/predictions/perda de peso.csv
+dmining/predictions/rubor facial.csv
+dmining/predictions/sangue nas fezes.csv
+dmining/predictions/surgimento de nodulos.csv
+dmining/predictions/tontura.csv
+dmining/predictions/tosse.csv
+dmining/predictions/vomito.csv
